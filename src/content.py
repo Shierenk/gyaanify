@@ -121,7 +121,7 @@ PATHS = [
        "takeaways": ["Tell clear project stories", "Explain your thinking out loud", "Honesty beats guessing"]},
     ]},
   {
-    "slug": "hackathon-playbook", "title": "Hackathon Playbook", "topic": "Build & hack", "level": "All levels",
+    "slug": "hackathon-playbook", "title": "Hackathon Playbook", "topic": "Build & Hack", "level": "Intermediate",
     "icon": "bolt",
     "summary": "Go from idea to demo in a weekend: pick the right problem, work as a team, ship a working prototype and pitch it well.",
     "outcomes": ["Choose a problem judges care about", "Organise a small team", "Ship a minimum viable product", "Deliver a confident demo"],
@@ -143,6 +143,65 @@ PATHS = [
                 "Record a backup video of your demo in case something breaks live, and be ready for questions about how it works."],
        "takeaways": ["Problem, demo, impact, next steps", "Rehearse more than once", "Always have a backup video"]},
     ]},
+]
+
+ASSESSMENTS = [
+  {
+    "id": "cyber-safety-basics",
+    "title": "Cyber Safety: Everyday Decisions",
+    "subject": "Security",
+    "difficulty": "Foundational",
+    "duration": "About 5 minutes",
+    "type": "Multiple choice",
+    "description": "Check your understanding of common scams, phishing, UPI safety and account protection.",
+    "questions": [
+      {
+        "topic": "Scam awareness",
+        "type": "scenario",
+        "prompt": "A message says your bank account will be blocked in ten minutes and asks you to open a link. What is the safest next step?",
+        "options": ["Open the link quickly", "Reply with your PIN to verify your identity", "Pause and contact the bank using its official app or number", "Forward the message to friends"],
+        "answer": 2,
+        "explanation": "Urgency is a common scam tactic. Use the bank's official app or contact details instead of the message link.",
+        "lesson": "path-cyber-safety.html#lesson-1"
+      },
+      {
+        "topic": "Phishing",
+        "type": "concept",
+        "prompt": "Which is the safest way to handle an unexpected message asking you to sign in?",
+        "options": ["Use the link in the message", "Open the official website or app yourself", "Send your password to the sender", "Install an app recommended by the sender"],
+        "answer": 1,
+        "explanation": "Opening the official app or typing the known website address avoids relying on a potentially fake link.",
+        "lesson": "path-cyber-safety.html#lesson-2"
+      },
+      {
+        "topic": "UPI & QR safety",
+        "type": "scenario",
+        "prompt": "A buyer sends you a QR code and says you must scan it and enter your UPI PIN to receive payment. What should you do?",
+        "options": ["Scan it and enter your PIN", "Ask them to send a second QR code", "Do not scan it or enter your PIN to receive money", "Share an OTP instead"],
+        "answer": 2,
+        "explanation": "A UPI PIN authorises money leaving your account; you do not need to enter it to receive money.",
+        "lesson": "path-cyber-safety.html#lesson-3"
+      },
+      {
+        "topic": "Account security",
+        "type": "concept",
+        "prompt": "Why should important accounts use different passwords?",
+        "options": ["It makes each account easier to guess", "A leaked password is less likely to unlock other accounts", "It removes the need for account recovery", "It prevents every kind of scam"],
+        "answer": 1,
+        "explanation": "Unique passwords limit the impact of a breach on one service. A password manager can help you keep track of them.",
+        "lesson": "path-cyber-safety.html#lesson-4"
+      },
+      {
+        "topic": "Reporting fraud",
+        "type": "scenario",
+        "prompt": "You realise you have sent money to a scammer in India. Which action is recommended?",
+        "options": ["Delete the messages and wait", "Call 1930 promptly and contact your bank", "Pay the scammer again to reverse the transfer", "Share your account password with the caller"],
+        "answer": 1,
+        "explanation": "Report quickly by calling India's cyber crime helpline 1930 and contact your bank to protect the account. Keep evidence.",
+        "lesson": "path-cyber-safety.html#lesson-5"
+      }
+    ]
+  }
 ]
 
 RESOURCES = [

@@ -6,18 +6,20 @@
 <title>Hackathon Playbook · Gyaanify</title>
 <meta name="description" content="Go from idea to demo in a weekend: pick the right problem, work as a team, ship a working prototype and pitch it well.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("gy-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap nav">
   <a class="logo" href="index.html" aria-label="Gyaanify home"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a>
-  <nav class="menu" aria-label="Main"><a href="index.html">Home</a><a href="paths.html" aria-current="page">Learning paths</a><a href="azure.html">Azure</a><a href="resources.html">Resources</a></nav>
-  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger"><span></span><span></span></button>
+  <nav class="menu" aria-label="Main"><a href="index.html">Home</a><a href="paths.html" aria-current="page">Learning paths</a><a href="mylearning.html">My learning</a><a href="build-hack.html">Build & Hack</a><a href="test.html">Test</a><a href="azure.html">Azure</a></nav>
+  <div class="nav-actions"><button class="theme-btn" type="button" id="themeBtn" aria-label="Switch colour theme"><span class="tb-dark">Light mode</span><span class="tb-light">Dark mode</span></button>
+  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger"><span></span><span></span></button></div>
 </div>
-<nav class="mobile" id="mobileNav" aria-label="Main" hidden><a href="index.html">Home</a><a href="paths.html" aria-current="page">Learning paths</a><a href="azure.html">Azure</a><a href="resources.html">Resources</a></nav>
+<nav class="mobile" id="mobileNav" aria-label="Main" hidden><a href="index.html">Home</a><a href="paths.html" aria-current="page">Learning paths</a><a href="mylearning.html">My learning</a><a href="build-hack.html">Build & Hack</a><a href="test.html">Test</a><a href="azure.html">Azure</a></nav>
 </header>
 <main id="main">
 
@@ -25,11 +27,11 @@
   <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="paths.html">Learning paths</a><span>/</span><span>Hackathon Playbook</span></nav>
   <div class="path-hero-grid">
     <div>
-      <span class="eyebrow">Build &amp; hack</span>
+      <span class="eyebrow">Build &amp; Hack</span>
       <h1>Hackathon Playbook</h1>
       <p class="lede">Go from idea to demo in a weekend: pick the right problem, work as a team, ship a working prototype and pitch it well.</p>
       <div class="facts">
-        <span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>All levels</span><span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>4 lessons</span><span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min</span>
+        <span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Intermediate</span><span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>4 lessons</span><span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min</span>
       </div>
       <a class="btn dark" href="#lesson-1">Start learning</a>
     </div>
@@ -47,24 +49,28 @@
   <p>Strong hackathon ideas solve a real, specific problem for a clear group of people. Read the judging criteria first and choose a problem that fits them.</p><p>Write the problem in one sentence: who has it, why it hurts and how your solution helps. If you can&#x27;t explain it simply, narrow it down.</p>
   <div class="takeaways"><h3>Key takeaways</h3><ul><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Solve a real, specific problem</span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Read the judging criteria first</span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Explain it in one sentence</span></li></ul></div>
   <label class="done"><input type="checkbox" id="done-hackathon-playbook-1" data-path="hackathon-playbook" data-lesson="1"><span>Mark as complete</span></label>
+  <div class="pcheck" data-answer="1"><span class="eyebrow pc-label">Practice check</span><h3>What makes a strong hackathon idea?</h3><div class="pc-opts" role="group" aria-label="Answer options"><button type="button" class="pc-opt" data-i="0">A vague idea for everyone</button><button type="button" class="pc-opt" data-i="1">A real, specific problem that fits the judging criteria</button><button type="button" class="pc-opt" data-i="2">The most complex technology</button><button type="button" class="pc-opt" data-i="3">Copying last year&#x27;s winner</button></div><p class="pc-result" role="status" hidden></p><p class="pc-why" hidden>Clear, specific problems that match the judging criteria score best.</p><button type="button" class="pc-retry" hidden>Try again</button></div>
 </article><article class="lesson" id="lesson-2">
   <div class="lesson-head"><span class="lesson-n">Lesson 2 of 4</span><span class="lesson-t"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>2 min read</span></div>
   <h2>Building the team</h2>
   <p>A small team of three or four works best. Cover the key roles: building the product, design and user experience, and the story and presentation.</p><p>Agree on the plan in the first hour, split the work clearly and check in every few hours so nobody is blocked.</p>
   <div class="takeaways"><h3>Key takeaways</h3><ul><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Keep the team small</span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Cover build, design and pitch</span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Check in often</span></li></ul></div>
   <label class="done"><input type="checkbox" id="done-hackathon-playbook-2" data-path="hackathon-playbook" data-lesson="2"><span>Mark as complete</span></label>
+  <div class="pcheck" data-answer="1"><span class="eyebrow pc-label">Practice check</span><h3>What team size usually works best?</h3><div class="pc-opts" role="group" aria-label="Answer options"><button type="button" class="pc-opt" data-i="0">One person</button><button type="button" class="pc-opt" data-i="1">Three or four people</button><button type="button" class="pc-opt" data-i="2">Ten people</button><button type="button" class="pc-opt" data-i="3">Twenty people</button></div><p class="pc-result" role="status" hidden></p><p class="pc-why" hidden>A small team of three or four can cover building, design and the pitch.</p><button type="button" class="pc-retry" hidden>Try again</button></div>
 </article><article class="lesson" id="lesson-3">
   <div class="lesson-head"><span class="lesson-n">Lesson 3 of 4</span><span class="lesson-t"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>2 min read</span></div>
   <h2>Shipping the MVP</h2>
   <p>A minimum viable product (MVP) is the smallest version that shows your idea working. Build one complete user journey end to end instead of many half-finished features.</p><p>Use tools and services you already know, fake what isn&#x27;t essential, and stop adding features a few hours before the deadline so you have time to test.</p>
   <div class="takeaways"><h3>Key takeaways</h3><ul><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>One working journey beats many partial features</span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Use familiar tools</span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Stop building early enough to test</span></li></ul></div>
   <label class="done"><input type="checkbox" id="done-hackathon-playbook-3" data-path="hackathon-playbook" data-lesson="3"><span>Mark as complete</span></label>
+  <div class="pcheck" data-answer="1"><span class="eyebrow pc-label">Practice check</span><h3>What should an MVP focus on?</h3><div class="pc-opts" role="group" aria-label="Answer options"><button type="button" class="pc-opt" data-i="0">Many half-finished features</button><button type="button" class="pc-opt" data-i="1">One complete user journey that works end to end</button><button type="button" class="pc-opt" data-i="2">Only the logo</button><button type="button" class="pc-opt" data-i="3">Documentation only</button></div><p class="pc-result" role="status" hidden></p><p class="pc-why" hidden>One working journey shows the idea better than many partial features.</p><button type="button" class="pc-retry" hidden>Try again</button></div>
 </article><article class="lesson" id="lesson-4">
   <div class="lesson-head"><span class="lesson-n">Lesson 4 of 4</span><span class="lesson-t"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>2 min read</span></div>
   <h2>Demo and pitch</h2>
   <p>Open with the problem and why it matters, show the working demo, then explain the impact and what you&#x27;d build next. Keep it short and practise it several times.</p><p>Record a backup video of your demo in case something breaks live, and be ready for questions about how it works.</p>
   <div class="takeaways"><h3>Key takeaways</h3><ul><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Problem, demo, impact, next steps</span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Rehearse more than once</span></li><li><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4.5 4.5L19 7"/></svg><span>Always have a backup video</span></li></ul></div>
   <label class="done"><input type="checkbox" id="done-hackathon-playbook-4" data-path="hackathon-playbook" data-lesson="4"><span>Mark as complete</span></label>
+  <div class="pcheck" data-answer="1"><span class="eyebrow pc-label">Practice check</span><h3>What&#x27;s the best safety net for a live demo?</h3><div class="pc-opts" role="group" aria-label="Answer options"><button type="button" class="pc-opt" data-i="0">Hope nothing breaks</button><button type="button" class="pc-opt" data-i="1">A recorded backup video of the demo</button><button type="button" class="pc-opt" data-i="2">Skipping the demo</button><button type="button" class="pc-opt" data-i="3">Talking faster</button></div><p class="pc-result" role="status" hidden></p><p class="pc-why" hidden>A backup video keeps your pitch on track if something fails live.</p><button type="button" class="pc-retry" hidden>Try again</button></div>
 </article>
     <a class="nextpath" href="path-cyber-safety.html"><span class="eyebrow">Next path</span><b>Cyber Safety Essentials</b><span>Recognise everyday scams, protect your accounts and know exactly what to do if something goes wrong.</span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
@@ -73,13 +79,13 @@
 </main>
 <footer class="foot"><div class="wrap">
   <div class="foot-grid">
-    <div><a class="logo" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a><p>Clear, practical lessons on security, cloud, AI and careers. Free to learn.</p></div>
+    <div><a class="logo" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a><p>Learn from scratch. Build real skills. Test your understanding. Free, with no signup.</p></div>
     <div><h4>Learn</h4><ul><li><a href="path-cyber-safety.html">Cyber Safety Essentials</a></li><li><a href="path-cloud-basics.html">Cloud Computing Basics</a></li><li><a href="path-devops-foundations.html">DevOps Foundations</a></li></ul></div>
-    <div><h4>More paths</h4><ul><li><a href="path-ai-for-everyone.html">AI for Everyone</a></li><li><a href="path-career-starter.html">Tech Career Starter</a></li><li><a href="path-hackathon-playbook.html">Hackathon Playbook</a></li></ul></div>
-    <div><h4>Explore</h4><ul><li><a href="paths.html">All learning paths</a></li><li><a href="azure.html">Azure certifications</a></li><li><a href="resources.html">Free resources</a></li></ul></div>
+    <div><h4>More paths</h4><ul><li><a href="path-ai-for-everyone.html">AI for Everyone</a></li><li><a href="path-career-starter.html">Tech Career Starter</a></li></ul></div>
+    <div><h4>Explore</h4><ul><li><a href="build-hack.html">Build &amp; Hack</a></li><li><a href="test.html">Test your skills</a></li><li><a href="azure.html">Azure certifications</a></li><li><a href="resources.html">Free resources</a></li></ul></div>
   </div>
   <div class="legal"><span>© 2026 Gyaanify</span><span>Cyber fraud in India? Call 1930 or visit cybercrime.gov.in</span></div>
 </div></footer>
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=3"></script>
 </body>
 </html>

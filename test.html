@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Test Your Skills · Gyaanify</title>
+<meta name="description" content="Free, no-signup skill assessments with answer feedback and links to related Gyaanify lessons.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("gy-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=3">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap nav">
+  <a class="logo" href="index.html" aria-label="Gyaanify home"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a>
+  <nav class="menu" aria-label="Main"><a href="index.html">Home</a><a href="paths.html">Learning paths</a><a href="mylearning.html">My learning</a><a href="build-hack.html">Build & Hack</a><a href="test.html" aria-current="page">Test</a><a href="azure.html">Azure</a></nav>
+  <div class="nav-actions"><button class="theme-btn" type="button" id="themeBtn" aria-label="Switch colour theme"><span class="tb-dark">Light mode</span><span class="tb-light">Dark mode</span></button>
+  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger"><span></span><span></span></button></div>
+</div>
+<nav class="mobile" id="mobileNav" aria-label="Main" hidden><a href="index.html">Home</a><a href="paths.html">Learning paths</a><a href="mylearning.html">My learning</a><a href="build-hack.html">Build & Hack</a><a href="test.html" aria-current="page">Test</a><a href="azure.html">Azure</a></nav>
+</header>
+<main id="main">
+
+<section class="page-head"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Test</span></nav>
+  <span class="eyebrow" style="display:block;margin-top:14px">Practise and measure progress</span>
+  <h1>Test Your Skills</h1>
+  <p class="lede">Practise and check your understanding for free, without creating an account. Review your answers, see what to revisit and return to the related lessons.</p>
+</div></section>
+<section class="sec tight" id="testCatalog"><div class="wrap">
+  <div class="assessment-filters" aria-label="Assessment filters">
+    <label>Search assessments<input id="assessmentSearch" type="search" placeholder="Search title or subject"></label>
+    <label>Subject<select id="assessmentSubject"><option value="all">All subjects</option></select></label>
+    <label>Topic<select id="assessmentTopic"><option value="all">All topics</option></select></label>
+    <label>Assessment type<select id="assessmentType"><option value="all">All types</option></select></label>
+  </div>
+  <p class="resultcount" id="assessmentCount" role="status" aria-live="polite"></p>
+  <div class="cards two assessment-grid" id="assessmentGrid"><article class="pcard assessment-card" data-title="Cyber Safety: Everyday Decisions" data-subject="Security" data-type="Multiple choice" data-topics="Scam awareness|Phishing|UPI &amp; QR safety|Account security|Reporting fraud"><div class="pbody"><span class="tag">Security</span><h2>Cyber Safety: Everyday Decisions</h2><p>Check your understanding of common scams, phishing, UPI safety and account protection.</p><div class="assessment-meta"><span>5 questions</span><span>About 5 minutes</span><span>Foundational</span><span>Multiple choice</span></div><a class="btn dark" href="test.html?assessment=cyber-safety-basics">Start assessment</a></div></article></div>
+  <p class="empty" id="assessmentEmpty" hidden>No assessments match those filters yet. Try another subject, topic, type or search.</p>
+  <p class="local-note">Assessments are free and available without signup. Results are calculated in this browser; your answers are not saved when you leave.</p>
+</div></section>
+<section class="sec tight" id="assessment" hidden><div class="wrap assessment-shell">
+  <div id="assessmentError" class="empty" hidden>This assessment could not be found. <a href="test.html">Browse assessments</a>.</div>
+  <div id="assessmentTake" hidden>
+    <a class="crumbs" href="test.html">← All assessments</a>
+    <div class="assessment-title"><span class="eyebrow" id="takeSubject"></span><h1 id="takeTitle"></h1><p class="lede" id="takeDescription"></p></div>
+    <div class="assessment-progress"><span id="questionCounter"></span><span id="answerCounter"></span></div>
+    <div class="bar" role="progressbar" aria-label="Assessment progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="questionProgress"><i></i></div>
+    <div id="questionArea" class="question-area"></div>
+    <nav id="questionNav" class="question-nav" aria-label="Question navigation"></nav>
+    <div class="assessment-actions"><button class="btn outline" type="button" id="previousQuestion">Previous</button><button class="btn outline" type="button" id="nextQuestion">Next</button><button class="btn outline" type="button" id="reviewAssessment">Review answers</button><button class="btn dark" type="button" id="submitAssessment">Submit assessment</button></div>
+    <p class="local-note">No timer is used for this assessment. Your answers remain in this browser tab only until you leave or retry.</p>
+  </div>
+  <div id="assessmentResult" hidden></div>
+</div></section>
+
+</main>
+<footer class="foot"><div class="wrap">
+  <div class="foot-grid">
+    <div><a class="logo" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a><p>Learn from scratch. Build real skills. Test your understanding. Free, with no signup.</p></div>
+    <div><h4>Learn</h4><ul><li><a href="path-cyber-safety.html">Cyber Safety Essentials</a></li><li><a href="path-cloud-basics.html">Cloud Computing Basics</a></li><li><a href="path-devops-foundations.html">DevOps Foundations</a></li></ul></div>
+    <div><h4>More paths</h4><ul><li><a href="path-ai-for-everyone.html">AI for Everyone</a></li><li><a href="path-career-starter.html">Tech Career Starter</a></li></ul></div>
+    <div><h4>Explore</h4><ul><li><a href="build-hack.html">Build &amp; Hack</a></li><li><a href="test.html">Test your skills</a></li><li><a href="azure.html">Azure certifications</a></li><li><a href="resources.html">Free resources</a></li></ul></div>
+  </div>
+  <div class="legal"><span>© 2026 Gyaanify</span><span>Cyber fraud in India? Call 1930 or visit cybercrime.gov.in</span></div>
+</div></footer>
+<script src="assets/app.js?v=3"></script>
+</body>
+</html>

@@ -1,11 +1,11 @@
 # Gyaanify
 
-Clear, practical lessons on security, cloud, AI and careers.
+Learn from scratch. Build real skills. Test your understanding.
 
 - Live site (Firebase): https://gyaanify-web.web.app
 - Live site (GitHub Pages): https://shierenk.github.io/gyaanify/
 
-Gyaanify is a **static website**: plain HTML, CSS and JavaScript. There is no database and no framework, so it runs anywhere.
+Gyaanify is a **static website**: plain HTML, CSS and JavaScript. There is no database and no framework, so it runs anywhere. Its graphite, lavender and lime design is shared across generated pages, with a light/dark mode toggle, a practice check after every lesson and a My learning progress dashboard.
 
 ---
 
@@ -51,18 +51,22 @@ Then open http://localhost:8000 (or the address the command prints).
 ```
 gyaanify-website/
 ├── index.html              Home page
-├── paths.html              All learning paths (with filters)
+├── paths.html              Curriculum paths (topic filter and lesson search)
+├── mylearning.html         My learning: progress dashboard saved on this device
 ├── path-*.html             One page per learning path (lessons)
+├── build-hack.html         Project-building and hackathon hub
+├── test.html               No-signup assessment catalog and test experience
 ├── azure.html              Azure certification roadmap
 ├── cert-*.html             Study material for each certification
 ├── resources.html          Free learning resources
 ├── 404.html                Page-not-found page
 ├── assets/
-│   ├── style.css           All styles (light and dark mode)
-│   └── app.js              Search, filters, progress tracking, insight of the day
+│   ├── style.css           Shared graphite, lavender and lime styles
+│   └── app.js              Search, filters, progress, assessments and insights
 ├── favicon.svg             Browser-tab icon
 ├── src/                    Source used to generate the pages (not published)
 │   ├── content.py          All lesson, certification and resource text
+│   ├── checks.py           Practice-check question for each lesson
 │   ├── build.py            Generates the HTML pages from content.py
 │   ├── style.css           Source stylesheet
 │   └── app_src.js          Source JavaScript
@@ -77,6 +81,7 @@ gyaanify-website/
 All text lives in `src/content.py`:
 
 - `PATHS`: learning paths and their lessons
+- `ASSESSMENTS`: assessment questions, answer keys and lesson references
 - `CERTS`: Azure certifications and their study material
 - `RESOURCES`: links on the Resources page
 
@@ -86,7 +91,7 @@ After editing, rebuild the pages (needs Python 3) from the project folder:
 python src/build.py .
 ```
 
-Then check the result locally (see above) before publishing.
+Then check the result locally (see above) before publishing. The learning paths catalog excludes the Hackathon Playbook, which remains available through the separate Build & Hack hub. The Test section currently contains multiple-choice assessments with browser-side scoring; it does not execute code or require an account.
 
 ---
 

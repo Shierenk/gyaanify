@@ -1,6 +1,7 @@
 import json, math, os, html, sys
 sys.path.insert(0, os.path.dirname(__file__))
-from content import PATHS, RESOURCES, SHORTS, CERTS
+from content import PATHS, RESOURCES, SHORTS, CERTS, ASSESSMENTS
+from checks import CHECKS
 
 OUT = sys.argv[1]
 os.makedirs(os.path.join(OUT, "assets"), exist_ok=True)
@@ -34,9 +35,10 @@ PATTERNS = ["p-grid", "p-dots", "p-diag", "p-rings", "p-lines", "p-cross"]
 
 LOGO = '<svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg>'
 
-NAV = [("index.html", "Home"), ("paths.html", "Learning paths"), ("azure.html", "Azure"), ("resources.html", "Resources")]
+NAV = [("index.html", "Home"), ("paths.html", "Learning paths"), ("mylearning.html", "My learning"), ("build-hack.html", "Build & Hack"), ("test.html", "Test"), ("azure.html", "Azure")]
+LEARNING_PATHS = [p for p in PATHS if p["topic"] != "Build & Hack"]
 
-def page(fname, title, body, active="", desc="Gyaanify: clear, practical lessons on security, cloud, AI and careers."):
+def page(fname, title, body, active="", desc="Free learning paths from foundational concepts to practical skills, projects and self-assessment, with no signup required."):
     nav = "".join(f'<a href="{h}"{" aria-current=\"page\"" if h == active else ""}>{t}</a>' for h, t in NAV)
     doc = f'''<!doctype html>
 <html lang="en">
@@ -46,16 +48,18 @@ def page(fname, title, body, active="", desc="Gyaanify: clear, practical lessons
 <title>{E(title)}</title>
 <meta name="description" content="{E(desc)}">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>try{{var t=localStorage.getItem("gy-theme");if(t)document.documentElement.setAttribute("data-theme",t)}}catch(e){{}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap nav">
   <a class="logo" href="index.html" aria-label="Gyaanify home">{LOGO}<span>Gyaanify</span></a>
   <nav class="menu" aria-label="Main">{nav}</nav>
-  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger"><span></span><span></span></button>
+  <div class="nav-actions"><button class="theme-btn" type="button" id="themeBtn" aria-label="Switch colour theme"><span class="tb-dark">Light mode</span><span class="tb-light">Dark mode</span></button>
+  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger"><span></span><span></span></button></div>
 </div>
 <nav class="mobile" id="mobileNav" aria-label="Main" hidden>{nav}</nav>
 </header>
@@ -64,21 +68,21 @@ def page(fname, title, body, active="", desc="Gyaanify: clear, practical lessons
 </main>
 <footer class="foot"><div class="wrap">
   <div class="foot-grid">
-    <div><a class="logo" href="index.html">{LOGO}<span>Gyaanify</span></a><p>Clear, practical lessons on security, cloud, AI and careers. Free to learn.</p></div>
-    <div><h4>Learn</h4><ul>{"".join(f'<li><a href="path-{p["slug"]}.html">{E(p["title"])}</a></li>' for p in PATHS[:3])}</ul></div>
-    <div><h4>More paths</h4><ul>{"".join(f'<li><a href="path-{p["slug"]}.html">{E(p["title"])}</a></li>' for p in PATHS[3:])}</ul></div>
-    <div><h4>Explore</h4><ul><li><a href="paths.html">All learning paths</a></li><li><a href="azure.html">Azure certifications</a></li><li><a href="resources.html">Free resources</a></li></ul></div>
+    <div><a class="logo" href="index.html">{LOGO}<span>Gyaanify</span></a><p>Learn from scratch. Build real skills. Test your understanding. Free, with no signup.</p></div>
+    <div><h4>Learn</h4><ul>{"".join(f'<li><a href="path-{p["slug"]}.html">{E(p["title"])}</a></li>' for p in LEARNING_PATHS[:3])}</ul></div>
+    <div><h4>More paths</h4><ul>{"".join(f'<li><a href="path-{p["slug"]}.html">{E(p["title"])}</a></li>' for p in LEARNING_PATHS[3:])}</ul></div>
+    <div><h4>Explore</h4><ul><li><a href="build-hack.html">Build &amp; Hack</a></li><li><a href="test.html">Test your skills</a></li><li><a href="azure.html">Azure certifications</a></li><li><a href="resources.html">Free resources</a></li></ul></div>
   </div>
   <div class="legal"><span>© 2026 Gyaanify</span><span>Cyber fraud in India? Call 1930 or visit cybercrime.gov.in</span></div>
 </div></footer>
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=3"></script>
 </body>
 </html>
 '''
     open(os.path.join(OUT, fname), "w").write(doc)
 
 def card(p, i):
-    return f'''<a class="pcard" href="path-{p["slug"]}.html" data-topic="{E(p["topic"])}" data-level="{E(p["level"])}">
+    return f'''<a class="pcard" href="path-{p["slug"]}.html" data-topic="{E(p["topic"])}">
   <div class="thumb {PATTERNS[i % len(PATTERNS)]}"><span class="thumb-topic">{E(p["topic"])}</span>{icon(p["icon"], "thumb-i")}</div>
   <div class="pbody">
     <span class="level">{E(p["level"])}</span>
@@ -97,16 +101,17 @@ def search_box(idp, ph="Search lessons, e.g. phishing, CI/CD, prompts"):
 
 # ---------------- HOME ----------------
 topics = []
-for p in PATHS:
+for p in LEARNING_PATHS:
     if p["topic"] not in topics: topics.append(p["topic"])
-total_lessons = sum(len(p["lessons"]) for p in PATHS)
+total_lessons = sum(len(p["lessons"]) for p in LEARNING_PATHS)
 home = f'''
 <section class="hero"><div class="wrap hero-grid">
   <div>
     <span class="eyebrow">Free learning, made simple</span>
-    <h1>Learn the skills that matter, one short lesson at a time.</h1>
-    <p class="lede">Practical learning paths on security, cloud, AI and careers. Plain language, real examples, and every lesson takes about five minutes.</p>
+    <h1>Learn from scratch. Build real skills. Test your understanding.</h1>
+    <p class="lede">Free, practical learning paths take you from foundational concepts to project-ready skills, with hands-on building and self-checks along the way.</p>
     {search_box("homeSearch")}
+    <div class="hero-cta"><a class="btn dark" href="paths.html">Explore learning paths {icon("arrow")}</a><a class="btn outline" href="test.html">Take a skills test</a></div>
     <div class="chips">{"".join(f'<a class="chip" href="paths.html#{E(t)}">{E(t)}</a>' for t in topics)}</div>
   </div>
   <aside class="insight" aria-label="Insight of the day">
@@ -119,7 +124,7 @@ home = f'''
 </div></section>
 
 <section class="stats"><div class="wrap stat-row">
-  <div><b>{len(PATHS)}</b><span>learning paths</span></div>
+  <div><b>{len(LEARNING_PATHS)}</b><span>learning paths</span></div>
   <div><b>{total_lessons}</b><span>short lessons</span></div>
   <div><b>~5 min</b><span>per lesson</span></div>
   <div><b>Free</b><span>no sign-up needed</span></div>
@@ -127,22 +132,22 @@ home = f'''
 
 <section class="sec"><div class="wrap">
   <div class="sec-head"><div><span class="eyebrow">Start here</span><h2>Popular learning paths</h2></div><a class="more" href="paths.html">View all paths {icon("arrow")}</a></div>
-  <div class="cards">{"".join(card(p, i) for i, p in enumerate(PATHS[:3]))}</div>
+  <div class="cards">{"".join(card(p, i) for i, p in enumerate(LEARNING_PATHS[:3]))}</div>
 </div></section>
 
 <section class="sec alt"><div class="wrap">
-  <div class="sec-head"><div><span class="eyebrow">How it works</span><h2>Learn in three simple steps</h2></div></div>
+  <div class="sec-head"><div><span class="eyebrow">Your learning journey</span><h2>Understand. Apply. Improve.</h2></div></div>
   <ol class="steps">
-    <li><span class="n">1</span><h3>Pick a path</h3><p>Choose a topic that fits your goal, from staying safe online to starting a tech career.</p></li>
-    <li><span class="n">2</span><h3>Take short lessons</h3><p>Each lesson explains one idea in plain words and ends with three key takeaways.</p></li>
-    <li><span class="n">3</span><h3>Practise and keep going</h3><p>Mark lessons complete, track your progress and practise with hand-picked free resources.</p></li>
+    <li><span class="n">1</span><h3>Learn the foundations</h3><p>Choose a structured path and build understanding one clear concept at a time.</p></li>
+    <li><span class="n">2</span><h3>Apply what you learn</h3><p>Practise with examples, make a small project or work through the Hackathon Playbook.</p></li>
+    <li><span class="n">3</span><h3>Test and revisit</h3><p>Check your understanding, review the explanations and return to lessons that need another look.</p></li>
   </ol>
 </div></section>
 
 __AZHOME__
 <section class="sec"><div class="wrap">
   <div class="sec-head"><div><span class="eyebrow">Keep learning</span><h2>More paths to explore</h2></div><a class="more" href="paths.html">View all paths {icon("arrow")}</a></div>
-  <div class="cards">{"".join(card(p, i + 3) for i, p in enumerate(PATHS[3:]))}</div>
+  <div class="cards">{"".join(card(p, i + 3) for i, p in enumerate(LEARNING_PATHS[3:]))}</div>
 </div></section>
 
 <section class="band"><div class="wrap band-in">
@@ -155,34 +160,134 @@ azhome = f"""<section class="sec azband"><div class="wrap az-grid">
   <div class="az-steps">{''.join(f'<a href="cert-{c["slug"]}.html"><span class="ccode">{E(c["code"])}</span><span><b>{E(c["name"])}</b><em>{E(c["tier"])}</em></span>{icon("arrow")}</a>' for c in CERTS)}</div>
 </div></section>"""
 home = home.replace("__AZHOME__", azhome)
+home = home.replace(
+    '<section class="sec"><div class="wrap">\n  <div class="sec-head"><div><span class="eyebrow">Keep learning</span>',
+    '''<section class="sec"><div class="wrap">
+  <div class="sec-head"><div><span class="eyebrow">Put learning into practice</span><h2>Build, then check what you know</h2></div></div>
+  <div class="cards two">
+    <a class="pcard" href="build-hack.html"><div class="thumb p-cross"><span class="thumb-topic">Apply your skills</span></div><div class="pbody"><h3>Build &amp; Hack</h3><p>Turn ideas into prototypes, follow the Hackathon Playbook and practise presenting what you make.</p><span class="more">Explore building resources &rarr;</span></div></a>
+    <a class="pcard" href="test.html"><div class="thumb p-grid"><span class="thumb-topic">Check your understanding</span></div><div class="pbody"><h3>Test your skills</h3><p>Try free, no-signup assessments, review your answers and find lessons to revisit.</p><span class="more">Browse assessments &rarr;</span></div></a>
+  </div>
+</div></section>
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><div><span class="eyebrow">Keep learning</span>'''
+)
 page("index.html", "Gyaanify", home, "index.html")
 
 # ---------------- PATHS CATALOG ----------------
-levels = []
-for p in PATHS:
-    if p["level"] not in levels: levels.append(p["level"])
 catalog = f'''
 <section class="page-head"><div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Learning paths</span></nav>
   <h1>Learning paths</h1>
-  <p class="lede">Structured, bite-sized paths. Each one builds from the basics, with key takeaways at the end of every lesson.</p>
+  <p class="lede">Start with foundational ideas, build practical skills and work towards creating your own projects. Every lesson is free and open without signup.</p>
   {search_box("pathSearch")}
 </div></section>
 <section class="sec tight"><div class="wrap catalog">
   <aside class="filters" aria-label="Filters">
     <h4>Topic</h4>
     <div class="fgroup" id="fTopic"><button type="button" class="f on" data-v="all">All topics</button>{"".join(f'<button type="button" class="f" data-v="{E(t)}">{E(t)}</button>' for t in topics)}</div>
-    <h4>Level</h4>
-    <div class="fgroup" id="fLevel"><button type="button" class="f on" data-v="all">All levels</button>{"".join(f'<button type="button" class="f" data-v="{E(l)}">{E(l)}</button>' for l in levels)}</div>
   </aside>
   <div>
-    <p class="resultcount" id="pathCount">{len(PATHS)} paths</p>
-    <div class="cards two" id="pathGrid">{"".join(card(p, i) for i, p in enumerate(PATHS))}</div>
-    <p class="empty" id="pathEmpty" hidden>No paths match these filters yet. Try another topic or level.</p>
+    <p class="resultcount" id="pathCount" role="status" aria-live="polite">{len(LEARNING_PATHS)} paths</p>
+    <div class="cards two" id="pathGrid">{"".join(card(p, i) for i, p in enumerate(LEARNING_PATHS))}</div>
+    <p class="empty" id="pathEmpty" hidden>No paths match this topic or search. Try another filter or search term.</p>
   </div>
 </div></section>
 '''
 page("paths.html", "Learning paths · Gyaanify", catalog, "paths.html")
+
+# ---------------- BUILD & HACK ----------------
+build_hack = f'''
+<section class="page-head"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Build &amp; Hack</span></nav>
+  <span class="eyebrow" style="display:block;margin-top:14px">Apply what you learn</span>
+  <h1>Build &amp; Hack</h1>
+  <p class="lede">The curriculum helps you understand concepts. This is where you put them to work: shape an idea, build a prototype, learn with a team and share what you made.</p>
+</div></section>
+<section class="sec tight"><div class="wrap">
+  <div class="cards">
+    <a class="pcard" href="path-hackathon-playbook.html"><div class="thumb p-cross"><span class="thumb-topic">Hackathon guide</span>{icon("bolt", "thumb-i")}</div><div class="pbody"><h3>Hackathon Playbook</h3><p>Go from a focused problem to a working weekend prototype and a clear demo.</p><span class="more">Open the playbook {icon("arrow")}</span></div></a>
+    <a class="pcard" href="path-cloud-basics.html#lesson-4"><div class="thumb p-dots"><span class="thumb-topic">Project practice</span>{icon("cloud", "thumb-i")}</div><div class="pbody"><h3>Build while you learn cloud</h3><p>Start with a small project idea from the Cloud Computing Basics path and practise describing what you built.</p><span class="more">Explore project guidance {icon("arrow")}</span></div></a>
+    <a class="pcard" href="path-devops-foundations.html"><div class="thumb p-diag"><span class="thumb-topic">Build and ship</span>{icon("pipeline", "thumb-i")}</div><div class="pbody"><h3>Practise a delivery workflow</h3><p>Learn how teams version, test and ship small changes safely as you develop your own project.</p><span class="more">Open DevOps Foundations {icon("arrow")}</span></div></a>
+  </div>
+  <p class="build-note">These resources support learning by doing. Start small, use tools you understand, and treat a prototype as a way to learn rather than a finished product.</p>
+</div></section>
+'''
+page("build-hack.html", "Build & Hack · Gyaanify", build_hack, "build-hack.html", "Apply your skills through practical projects, prototypes and hackathon guidance.")
+
+# ---------------- TEST ----------------
+assessment_cards = "".join(
+    f'<article class="pcard assessment-card" data-title="{E(a["title"])}" data-subject="{E(a["subject"])}" data-type="{E(a["type"])}" data-topics="{E("|".join(dict.fromkeys(q["topic"] for q in a["questions"])))}">'
+    f'<div class="pbody"><span class="tag">{E(a["subject"])}</span><h2>{E(a["title"])}</h2><p>{E(a["description"])}</p>'
+    f'<div class="assessment-meta"><span>{len(a["questions"])} questions</span><span>{E(a["duration"])}</span><span>{E(a["difficulty"])}</span><span>{E(a["type"])}</span></div>'
+    f'<a class="btn dark" href="test.html?assessment={E(a["id"])}">Start assessment</a></div></article>'
+    for a in ASSESSMENTS
+)
+test_page = f'''
+<section class="page-head"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Test</span></nav>
+  <span class="eyebrow" style="display:block;margin-top:14px">Practise and measure progress</span>
+  <h1>Test Your Skills</h1>
+  <p class="lede">Practise and check your understanding for free, without creating an account. Review your answers, see what to revisit and return to the related lessons.</p>
+</div></section>
+<section class="sec tight" id="testCatalog"><div class="wrap">
+  <div class="assessment-filters" aria-label="Assessment filters">
+    <label>Search assessments<input id="assessmentSearch" type="search" placeholder="Search title or subject"></label>
+    <label>Subject<select id="assessmentSubject"><option value="all">All subjects</option></select></label>
+    <label>Topic<select id="assessmentTopic"><option value="all">All topics</option></select></label>
+    <label>Assessment type<select id="assessmentType"><option value="all">All types</option></select></label>
+  </div>
+  <p class="resultcount" id="assessmentCount" role="status" aria-live="polite"></p>
+  <div class="cards two assessment-grid" id="assessmentGrid">{assessment_cards}</div>
+  <p class="empty" id="assessmentEmpty" hidden>No assessments match those filters yet. Try another subject, topic, type or search.</p>
+  <p class="local-note">Assessments are free and available without signup. Results are calculated in this browser; your answers are not saved when you leave.</p>
+</div></section>
+<section class="sec tight" id="assessment" hidden><div class="wrap assessment-shell">
+  <div id="assessmentError" class="empty" hidden>This assessment could not be found. <a href="test.html">Browse assessments</a>.</div>
+  <div id="assessmentTake" hidden>
+    <a class="crumbs" href="test.html">← All assessments</a>
+    <div class="assessment-title"><span class="eyebrow" id="takeSubject"></span><h1 id="takeTitle"></h1><p class="lede" id="takeDescription"></p></div>
+    <div class="assessment-progress"><span id="questionCounter"></span><span id="answerCounter"></span></div>
+    <div class="bar" role="progressbar" aria-label="Assessment progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="questionProgress"><i></i></div>
+    <div id="questionArea" class="question-area"></div>
+    <nav id="questionNav" class="question-nav" aria-label="Question navigation"></nav>
+    <div class="assessment-actions"><button class="btn outline" type="button" id="previousQuestion">Previous</button><button class="btn outline" type="button" id="nextQuestion">Next</button><button class="btn outline" type="button" id="reviewAssessment">Review answers</button><button class="btn dark" type="button" id="submitAssessment">Submit assessment</button></div>
+    <p class="local-note">No timer is used for this assessment. Your answers remain in this browser tab only until you leave or retry.</p>
+  </div>
+  <div id="assessmentResult" hidden></div>
+</div></section>
+'''
+page("test.html", "Test Your Skills · Gyaanify", test_page, "test.html", "Free, no-signup skill assessments with answer feedback and links to related Gyaanify lessons.")
+
+# ---------------- PRACTICE CHECKS ----------------
+def check_html(slug, k):
+    qs = CHECKS.get(slug, [])
+    if k >= len(qs): return ""
+    q, opts, ans, why = qs[k]
+    btns = "".join(f'<button type="button" class="pc-opt" data-i="{i}">{E(o)}</button>' for i, o in enumerate(opts))
+    return f'''<div class="pcheck" data-answer="{ans}"><span class="eyebrow pc-label">Practice check</span><h3>{E(q)}</h3><div class="pc-opts" role="group" aria-label="Answer options">{btns}</div><p class="pc-result" role="status" hidden></p><p class="pc-why" hidden>{E(why)}</p><button type="button" class="pc-retry" hidden>Try again</button></div>'''
+
+# ---------------- MY LEARNING ----------------
+ml_paths = [{"slug": p["slug"], "title": p["title"], "topic": p["topic"], "level": p["level"], "summary": p["summary"], "total": len(p["lessons"]), "lessons": [l["title"] for l in p["lessons"]]} for p in PATHS]
+ml = f'''
+<section class="page-head"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>My learning</span></nav>
+  <h1>My learning</h1>
+  <p class="lede">Your progress stays on this device. Pick up where you left off, or choose a new path when you're ready.</p>
+</div></section>
+<section class="sec tight"><div class="wrap">
+  <div class="ml-stats">
+    <div><span class="eyebrow">Your map</span><b id="mlLessons">0</b><span>Lessons complete</span></div>
+    <div><b id="mlPaths">0</b><span>Paths started</span></div>
+    <div><b id="mlPct">0%</b><span>Overall progress</span></div>
+  </div>
+  <p class="ml-hint" id="mlHint">No lessons completed yet. Start with a path below.</p>
+  <div class="ml-grid" id="mlGrid"></div>
+  <div class="ml-foot"><button type="button" class="btn outline" id="mlReset">Reset my progress</button><p class="ml-confirm" id="mlConfirm" hidden>Clear all progress on this device? <button type="button" class="linkbtn" id="mlYes">Yes, reset</button> <button type="button" class="linkbtn" id="mlNo">Cancel</button></p></div>
+</div></section>
+<script>window.GY_PATHS={json.dumps(ml_paths)};</script>
+'''
+page("mylearning.html", "My learning · Gyaanify", ml, "mylearning.html", "Track your Gyaanify progress on this device.")
 
 # ---------------- PATH PAGES ----------------
 for i, p in enumerate(PATHS):
@@ -198,6 +303,7 @@ for i, p in enumerate(PATHS):
   {paras}
   <div class="takeaways"><h3>Key takeaways</h3><ul>{tks}</ul></div>
   <label class="done"><input type="checkbox" id="done-{p["slug"]}-{k+1}" data-path="{p["slug"]}" data-lesson="{k+1}"><span>Mark as complete</span></label>
+  {check_html(p["slug"], k)}
 </article>'''
     outcomes = "".join(f"<li>{icon('check')}<span>{E(o)}</span></li>" for o in p["outcomes"])
     body = f'''
@@ -255,7 +361,7 @@ page("404.html", "Page not found · Gyaanify", f'''<section class="page-head cen
 def cert_card(c):
     return f"""<a class="ccard" href="cert-{c['slug']}.html"><span class="ccode">{E(c['code'])}</span><span class="ctier">{E(c['tier'])}</span><h3>{E(c['name'])}</h3><p>{E(c['summary'])}</p><span class="cgo">Study material {icon('arrow')}</span></a>"""
 tiers = ["Fundamentals", "Associate", "Expert"]
-roadmap = "".join(f"""<div class="tier"><div class="tier-head"><span class="tier-n">{k+1}</span><div><b>{t}</b><span>{['Start here. No experience needed.','Hands-on skills to run Azure.','Advanced, role-based mastery.'][k]}</span></div></div><div class="tier-cards">{''.join(cert_card(c) for c in CERTS if c['tier']==t)}</div></div>""" for k,t in enumerate(tiers))
+roadmap = "".join(f"""<div class="tier"><div class="tier-head"><span class="tier-n">{k+1}</span><div><b>{t}</b><span>{['Start here. No experience needed.','Hands-on skills to run Azure.','Explore the skills measured for this certification.'][k]}</span></div></div><div class="tier-cards">{''.join(cert_card(c) for c in CERTS if c['tier']==t)}</div></div>""" for k,t in enumerate(tiers))
 az = f"""
 <section class="page-head az-head"><div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>Azure</span></nav>
@@ -335,6 +441,6 @@ for p in PATHS:
 here = os.path.dirname(os.path.abspath(__file__))
 for c in CERTS:
     idx.append({"t": c["code"] + ": " + c["name"], "s": "Azure certification · " + c["tier"], "u": f'cert-{c["slug"]}.html', "k": (c["summary"] + " " + " ".join(n[0] + " " + n[1] for n in c["notes"]) + " azure certification exam").lower()})
-open(os.path.join(OUT, "assets", "app.js"), "w").write("window.GY_INDEX=" + json.dumps(idx) + ";\n" + open(os.path.join(here, "app_src.js")).read())
+open(os.path.join(OUT, "assets", "app.js"), "w").write("window.GY_INDEX=" + json.dumps(idx) + ";\nwindow.GY_ASSESSMENTS=" + json.dumps(ASSESSMENTS) + ";\n" + open(os.path.join(here, "app_src.js")).read())
 open(os.path.join(OUT, "assets", "style.css"), "w").write(open(os.path.join(here, "style.css")).read())
 print("built", len(os.listdir(OUT)))

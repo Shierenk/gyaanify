@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>My learning · Gyaanify</title>
+<meta name="description" content="Track your Gyaanify progress on this device.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("gy-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=3">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap nav">
+  <a class="logo" href="index.html" aria-label="Gyaanify home"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a>
+  <nav class="menu" aria-label="Main"><a href="index.html">Home</a><a href="paths.html">Learning paths</a><a href="mylearning.html" aria-current="page">My learning</a><a href="build-hack.html">Build & Hack</a><a href="test.html">Test</a><a href="azure.html">Azure</a></nav>
+  <div class="nav-actions"><button class="theme-btn" type="button" id="themeBtn" aria-label="Switch colour theme"><span class="tb-dark">Light mode</span><span class="tb-light">Dark mode</span></button>
+  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger"><span></span><span></span></button></div>
+</div>
+<nav class="mobile" id="mobileNav" aria-label="Main" hidden><a href="index.html">Home</a><a href="paths.html">Learning paths</a><a href="mylearning.html" aria-current="page">My learning</a><a href="build-hack.html">Build & Hack</a><a href="test.html">Test</a><a href="azure.html">Azure</a></nav>
+</header>
+<main id="main">
+
+<section class="page-head"><div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><span>My learning</span></nav>
+  <h1>My learning</h1>
+  <p class="lede">Your progress stays on this device. Pick up where you left off, or choose a new path when you're ready.</p>
+</div></section>
+<section class="sec tight"><div class="wrap">
+  <div class="ml-stats">
+    <div><span class="eyebrow">Your map</span><b id="mlLessons">0</b><span>Lessons complete</span></div>
+    <div><b id="mlPaths">0</b><span>Paths started</span></div>
+    <div><b id="mlPct">0%</b><span>Overall progress</span></div>
+  </div>
+  <p class="ml-hint" id="mlHint">No lessons completed yet. Start with a path below.</p>
+  <div class="ml-grid" id="mlGrid"></div>
+  <div class="ml-foot"><button type="button" class="btn outline" id="mlReset">Reset my progress</button><p class="ml-confirm" id="mlConfirm" hidden>Clear all progress on this device? <button type="button" class="linkbtn" id="mlYes">Yes, reset</button> <button type="button" class="linkbtn" id="mlNo">Cancel</button></p></div>
+</div></section>
+<script>window.GY_PATHS=[{"slug": "cyber-safety", "title": "Cyber Safety Essentials", "topic": "Security", "level": "Beginner", "summary": "Recognise everyday scams, protect your accounts and know exactly what to do if something goes wrong.", "total": 5, "lessons": ["How scammers think", "Spotting phishing messages", "UPI and QR code safety", "Protecting your accounts", "If you've been scammed"]}, {"slug": "cloud-basics", "title": "Cloud Computing Basics", "topic": "Cloud & DevOps", "level": "Beginner", "summary": "Understand what the cloud really is, the main service models, and how to start learning Azure for free.", "total": 4, "lessons": ["What is the cloud?", "IaaS, PaaS and SaaS", "Regions and availability", "Start learning Azure for free"]}, {"slug": "devops-foundations", "title": "DevOps Foundations", "topic": "Cloud & DevOps", "level": "Intermediate", "summary": "Learn how modern teams build, test and ship software quickly and safely, from CI/CD to security in the pipeline.", "total": 4, "lessons": ["What DevOps really means", "CI/CD pipelines", "Infrastructure as Code", "DevSecOps: security in the pipeline"]}, {"slug": "ai-for-everyone", "title": "AI for Everyone", "topic": "Artificial intelligence", "level": "Beginner", "summary": "Use AI tools confidently: how they work, how to ask good questions, and how to stay safe while using them.", "total": 4, "lessons": ["What generative AI is", "Writing good prompts", "Using AI safely", "AI agents and prompt injection"]}, {"slug": "career-starter", "title": "Tech Career Starter", "topic": "Careers", "level": "Beginner", "summary": "Choose a direction, pick the right certifications and build proof of your skills that employers notice.", "total": 4, "lessons": ["Choosing a path", "Certifications that matter", "Building a portfolio", "Acing interviews"]}, {"slug": "hackathon-playbook", "title": "Hackathon Playbook", "topic": "Build & Hack", "level": "Intermediate", "summary": "Go from idea to demo in a weekend: pick the right problem, work as a team, ship a working prototype and pitch it well.", "total": 4, "lessons": ["Picking the problem", "Building the team", "Shipping the MVP", "Demo and pitch"]}];</script>
+
+</main>
+<footer class="foot"><div class="wrap">
+  <div class="foot-grid">
+    <div><a class="logo" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a><p>Learn from scratch. Build real skills. Test your understanding. Free, with no signup.</p></div>
+    <div><h4>Learn</h4><ul><li><a href="path-cyber-safety.html">Cyber Safety Essentials</a></li><li><a href="path-cloud-basics.html">Cloud Computing Basics</a></li><li><a href="path-devops-foundations.html">DevOps Foundations</a></li></ul></div>
+    <div><h4>More paths</h4><ul><li><a href="path-ai-for-everyone.html">AI for Everyone</a></li><li><a href="path-career-starter.html">Tech Career Starter</a></li></ul></div>
+    <div><h4>Explore</h4><ul><li><a href="build-hack.html">Build &amp; Hack</a></li><li><a href="test.html">Test your skills</a></li><li><a href="azure.html">Azure certifications</a></li><li><a href="resources.html">Free resources</a></li></ul></div>
+  </div>
+  <div class="legal"><span>© 2026 Gyaanify</span><span>Cyber fraud in India? Call 1930 or visit cybercrime.gov.in</span></div>
+</div></footer>
+<script src="assets/app.js?v=3"></script>
+</body>
+</html>

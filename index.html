@@ -4,34 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gyaanify</title>
-<meta name="description" content="Gyaanify: clear, practical lessons on security, cloud, AI and careers.">
+<meta name="description" content="Free learning paths from foundational concepts to practical skills, projects and self-assessment, with no signup required.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>try{var t=localStorage.getItem("gy-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap nav">
   <a class="logo" href="index.html" aria-label="Gyaanify home"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a>
-  <nav class="menu" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="paths.html">Learning paths</a><a href="azure.html">Azure</a><a href="resources.html">Resources</a></nav>
-  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger"><span></span><span></span></button>
+  <nav class="menu" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="paths.html">Learning paths</a><a href="mylearning.html">My learning</a><a href="build-hack.html">Build & Hack</a><a href="test.html">Test</a><a href="azure.html">Azure</a></nav>
+  <div class="nav-actions"><button class="theme-btn" type="button" id="themeBtn" aria-label="Switch colour theme"><span class="tb-dark">Light mode</span><span class="tb-light">Dark mode</span></button>
+  <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" id="burger"><span></span><span></span></button></div>
 </div>
-<nav class="mobile" id="mobileNav" aria-label="Main" hidden><a href="index.html" aria-current="page">Home</a><a href="paths.html">Learning paths</a><a href="azure.html">Azure</a><a href="resources.html">Resources</a></nav>
+<nav class="mobile" id="mobileNav" aria-label="Main" hidden><a href="index.html" aria-current="page">Home</a><a href="paths.html">Learning paths</a><a href="mylearning.html">My learning</a><a href="build-hack.html">Build & Hack</a><a href="test.html">Test</a><a href="azure.html">Azure</a></nav>
 </header>
 <main id="main">
 
 <section class="hero"><div class="wrap hero-grid">
   <div>
     <span class="eyebrow">Free learning, made simple</span>
-    <h1>Learn the skills that matter, one short lesson at a time.</h1>
-    <p class="lede">Practical learning paths on security, cloud, AI and careers. Plain language, real examples, and every lesson takes about five minutes.</p>
+    <h1>Learn from scratch. Build real skills. Test your understanding.</h1>
+    <p class="lede">Free, practical learning paths take you from foundational concepts to project-ready skills, with hands-on building and self-checks along the way.</p>
     <div class="search" role="search">
   <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
   <input id="homeSearch" type="search" placeholder="Search lessons, e.g. phishing, CI/CD, prompts" autocomplete="off" aria-label="Search lessons">
   <div class="results" id="homeSearch-results" hidden></div>
 </div>
-    <div class="chips"><a class="chip" href="paths.html#Security">Security</a><a class="chip" href="paths.html#Cloud &amp; DevOps">Cloud &amp; DevOps</a><a class="chip" href="paths.html#Artificial intelligence">Artificial intelligence</a><a class="chip" href="paths.html#Careers">Careers</a><a class="chip" href="paths.html#Build &amp; hack">Build &amp; hack</a></div>
+    <div class="hero-cta"><a class="btn dark" href="paths.html">Explore learning paths <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn outline" href="test.html">Take a skills test</a></div>
+    <div class="chips"><a class="chip" href="paths.html#Security">Security</a><a class="chip" href="paths.html#Cloud &amp; DevOps">Cloud &amp; DevOps</a><a class="chip" href="paths.html#Artificial intelligence">Artificial intelligence</a><a class="chip" href="paths.html#Careers">Careers</a></div>
   </div>
   <aside class="insight" aria-label="Insight of the day">
     <div class="insight-top"><span class="eyebrow">Insight of the day</span><span class="count" id="tipCount">01 / 07</span></div>
@@ -43,15 +46,15 @@
 </div></section>
 
 <section class="stats"><div class="wrap stat-row">
-  <div><b>6</b><span>learning paths</span></div>
-  <div><b>25</b><span>short lessons</span></div>
+  <div><b>5</b><span>learning paths</span></div>
+  <div><b>21</b><span>short lessons</span></div>
   <div><b>~5 min</b><span>per lesson</span></div>
   <div><b>Free</b><span>no sign-up needed</span></div>
 </div></section>
 
 <section class="sec"><div class="wrap">
   <div class="sec-head"><div><span class="eyebrow">Start here</span><h2>Popular learning paths</h2></div><a class="more" href="paths.html">View all paths <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  <div class="cards"><a class="pcard" href="path-cyber-safety.html" data-topic="Security" data-level="Beginner">
+  <div class="cards"><a class="pcard" href="path-cyber-safety.html" data-topic="Security">
   <div class="thumb p-grid"><span class="thumb-topic">Security</span><svg class="thumb-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5l8 3v6c0 5-3.4 9.2-8 10.5-4.6-1.3-8-5.5-8-10.5v-6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
   <div class="pbody">
     <span class="level">Beginner</span>
@@ -59,7 +62,7 @@
     <p>Recognise everyday scams, protect your accounts and know exactly what to do if something goes wrong.</p>
     <div class="meta"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg><span>5 lessons</span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>10 min</span></div>
   </div>
-</a><a class="pcard" href="path-cloud-basics.html" data-topic="Cloud &amp; DevOps" data-level="Beginner">
+</a><a class="pcard" href="path-cloud-basics.html" data-topic="Cloud &amp; DevOps">
   <div class="thumb p-dots"><span class="thumb-topic">Cloud &amp; DevOps</span><svg class="thumb-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a5 5 0 1 1 1-9.9A6 6 0 0 1 19 10a4 4 0 0 1-1 8z"/></svg></div>
   <div class="pbody">
     <span class="level">Beginner</span>
@@ -67,7 +70,7 @@
     <p>Understand what the cloud really is, the main service models, and how to start learning Azure for free.</p>
     <div class="meta"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg><span>4 lessons</span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>8 min</span></div>
   </div>
-</a><a class="pcard" href="path-devops-foundations.html" data-topic="Cloud &amp; DevOps" data-level="Intermediate">
+</a><a class="pcard" href="path-devops-foundations.html" data-topic="Cloud &amp; DevOps">
   <div class="thumb p-diag"><span class="thumb-topic">Cloud &amp; DevOps</span><svg class="thumb-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M7.5 12h4l5-6M11.5 12l5 6"/></svg></div>
   <div class="pbody">
     <span class="level">Intermediate</span>
@@ -79,11 +82,11 @@
 </div></section>
 
 <section class="sec alt"><div class="wrap">
-  <div class="sec-head"><div><span class="eyebrow">How it works</span><h2>Learn in three simple steps</h2></div></div>
+  <div class="sec-head"><div><span class="eyebrow">Your learning journey</span><h2>Understand. Apply. Improve.</h2></div></div>
   <ol class="steps">
-    <li><span class="n">1</span><h3>Pick a path</h3><p>Choose a topic that fits your goal, from staying safe online to starting a tech career.</p></li>
-    <li><span class="n">2</span><h3>Take short lessons</h3><p>Each lesson explains one idea in plain words and ends with three key takeaways.</p></li>
-    <li><span class="n">3</span><h3>Practise and keep going</h3><p>Mark lessons complete, track your progress and practise with hand-picked free resources.</p></li>
+    <li><span class="n">1</span><h3>Learn the foundations</h3><p>Choose a structured path and build understanding one clear concept at a time.</p></li>
+    <li><span class="n">2</span><h3>Apply what you learn</h3><p>Practise with examples, make a small project or work through the Hackathon Playbook.</p></li>
+    <li><span class="n">3</span><h3>Test and revisit</h3><p>Check your understanding, review the explanations and return to lessons that need another look.</p></li>
   </ol>
 </div></section>
 
@@ -92,8 +95,15 @@
   <div class="az-steps"><a href="cert-az-900.html"><span class="ccode">AZ-900</span><span><b>Azure Fundamentals</b><em>Fundamentals</em></span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="cert-ai-901.html"><span class="ccode">AI-901</span><span><b>Azure AI Fundamentals</b><em>Fundamentals</em></span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="cert-az-104.html"><span class="ccode">AZ-104</span><span><b>Azure Administrator</b><em>Associate</em></span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a href="cert-az-400.html"><span class="ccode">AZ-400</span><span><b>DevOps Engineer Expert</b><em>Expert</em></span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
 </div></section>
 <section class="sec"><div class="wrap">
+  <div class="sec-head"><div><span class="eyebrow">Put learning into practice</span><h2>Build, then check what you know</h2></div></div>
+  <div class="cards two">
+    <a class="pcard" href="build-hack.html"><div class="thumb p-cross"><span class="thumb-topic">Apply your skills</span></div><div class="pbody"><h3>Build &amp; Hack</h3><p>Turn ideas into prototypes, follow the Hackathon Playbook and practise presenting what you make.</p><span class="more">Explore building resources &rarr;</span></div></a>
+    <a class="pcard" href="test.html"><div class="thumb p-grid"><span class="thumb-topic">Check your understanding</span></div><div class="pbody"><h3>Test your skills</h3><p>Try free, no-signup assessments, review your answers and find lessons to revisit.</p><span class="more">Browse assessments &rarr;</span></div></a>
+  </div>
+</div></section>
+<section class="sec"><div class="wrap">
   <div class="sec-head"><div><span class="eyebrow">Keep learning</span><h2>More paths to explore</h2></div><a class="more" href="paths.html">View all paths <svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-  <div class="cards"><a class="pcard" href="path-ai-for-everyone.html" data-topic="Artificial intelligence" data-level="Beginner">
+  <div class="cards"><a class="pcard" href="path-ai-for-everyone.html" data-topic="Artificial intelligence">
   <div class="thumb p-rings"><span class="thumb-topic">Artificial intelligence</span><svg class="thumb-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 9h6v6H9zM9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg></div>
   <div class="pbody">
     <span class="level">Beginner</span>
@@ -101,20 +111,12 @@
     <p>Use AI tools confidently: how they work, how to ask good questions, and how to stay safe while using them.</p>
     <div class="meta"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg><span>4 lessons</span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>8 min</span></div>
   </div>
-</a><a class="pcard" href="path-career-starter.html" data-topic="Careers" data-level="Beginner">
+</a><a class="pcard" href="path-career-starter.html" data-topic="Careers">
   <div class="thumb p-lines"><span class="thumb-topic">Careers</span><svg class="thumb-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
   <div class="pbody">
     <span class="level">Beginner</span>
     <h3>Tech Career Starter</h3>
     <p>Choose a direction, pick the right certifications and build proof of your skills that employers notice.</p>
-    <div class="meta"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg><span>4 lessons</span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>8 min</span></div>
-  </div>
-</a><a class="pcard" href="path-hackathon-playbook.html" data-topic="Build &amp; hack" data-level="All levels">
-  <div class="thumb p-cross"><span class="thumb-topic">Build &amp; hack</span><svg class="thumb-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
-  <div class="pbody">
-    <span class="level">All levels</span>
-    <h3>Hackathon Playbook</h3>
-    <p>Go from idea to demo in a weekend: pick the right problem, work as a team, ship a working prototype and pitch it well.</p>
     <div class="meta"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg><span>4 lessons</span><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>8 min</span></div>
   </div>
 </a></div>
@@ -128,13 +130,13 @@
 </main>
 <footer class="foot"><div class="wrap">
   <div class="foot-grid">
-    <div><a class="logo" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a><p>Clear, practical lessons on security, cloud, AI and careers. Free to learn.</p></div>
+    <div><a class="logo" href="index.html"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x=".5" y=".5" width="31" height="31" rx="8" fill="currentColor"/><path d="M22.5 11.2A8 8 0 1 0 24 16h-8" fill="none" stroke="var(--logo-cut)" stroke-width="3" stroke-linecap="square"/><rect x="21" y="21" width="3" height="3" fill="var(--logo-cut)"/></svg><span>Gyaanify</span></a><p>Learn from scratch. Build real skills. Test your understanding. Free, with no signup.</p></div>
     <div><h4>Learn</h4><ul><li><a href="path-cyber-safety.html">Cyber Safety Essentials</a></li><li><a href="path-cloud-basics.html">Cloud Computing Basics</a></li><li><a href="path-devops-foundations.html">DevOps Foundations</a></li></ul></div>
-    <div><h4>More paths</h4><ul><li><a href="path-ai-for-everyone.html">AI for Everyone</a></li><li><a href="path-career-starter.html">Tech Career Starter</a></li><li><a href="path-hackathon-playbook.html">Hackathon Playbook</a></li></ul></div>
-    <div><h4>Explore</h4><ul><li><a href="paths.html">All learning paths</a></li><li><a href="azure.html">Azure certifications</a></li><li><a href="resources.html">Free resources</a></li></ul></div>
+    <div><h4>More paths</h4><ul><li><a href="path-ai-for-everyone.html">AI for Everyone</a></li><li><a href="path-career-starter.html">Tech Career Starter</a></li></ul></div>
+    <div><h4>Explore</h4><ul><li><a href="build-hack.html">Build &amp; Hack</a></li><li><a href="test.html">Test your skills</a></li><li><a href="azure.html">Azure certifications</a></li><li><a href="resources.html">Free resources</a></li></ul></div>
   </div>
   <div class="legal"><span>© 2026 Gyaanify</span><span>Cyber fraud in India? Call 1930 or visit cybercrime.gov.in</span></div>
 </div></footer>
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=3"></script>
 </body>
 </html>
